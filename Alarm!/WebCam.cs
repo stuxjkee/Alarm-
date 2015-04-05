@@ -10,7 +10,7 @@ namespace Alarm_ {
         private WebCamCapture webcam;
         private System.Windows.Forms.PictureBox _FrameImage;
         private int FrameNumber = 50;
-        public void InitializaWebCam(ref System.Windows.Forms.PictureBox ImageControl) {
+        public void InitializeWebCam(ref System.Windows.Forms.PictureBox ImageControl) {
             webcam = new WebCamCapture();
             webcam.FrameNumber = ((ulong)(0ul));
             webcam.TimeToCapture_milliseconds = FrameNumber;

@@ -11,10 +11,16 @@ using System.Drawing.Imaging;
 
 namespace Alarm_ {
     class Helper {
-        public static void saveImg(System.Drawing.Image img, string fileName) {              
+        public static void saveImg(System.Drawing.Image img, string fileName) {
+            try {
                 FileStream fstream = new FileStream(fileName, FileMode.Create);
                 img.Save(fstream, System.Drawing.Imaging.ImageFormat.Jpeg);
                 fstream.Close();
+            } catch (Exception e) {
+                MessageBox.Show(e.Message);
             }
         }
+           
+
+     }
 }

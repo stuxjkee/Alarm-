@@ -103,11 +103,11 @@
 
         #endregion
 
-        private System.Windows.Forms.PictureBox imgVideo;
         private System.Windows.Forms.Button btnStart;
         private System.Windows.Forms.Button btnStop;
         private System.Windows.Forms.Button btnContinue;
         private System.Windows.Forms.Button btnSettings;
+        private System.Windows.Forms.PictureBox imgVideo;
     }
 }
 

@@ -35,7 +35,17 @@
             this.label2 = new System.Windows.Forms.Label();
             this.editFolderSelect = new System.Windows.Forms.TextBox();
             this.btnSelectFolder = new System.Windows.Forms.Button();
+            this.imgForCompare = new System.Windows.Forms.PictureBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.btnCapture = new System.Windows.Forms.Button();
+            this.btnFromFile = new System.Windows.Forms.Button();
+            this.btnChange = new System.Windows.Forms.Button();
+            this.dialogFromFile = new System.Windows.Forms.OpenFileDialog();
+            this.label4 = new System.Windows.Forms.Label();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.editPercantage)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgForCompare)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -88,7 +98,7 @@
             // checkEmail
             // 
             this.checkEmail.AutoSize = true;
-            this.checkEmail.Location = new System.Drawing.Point(13, 149);
+            this.checkEmail.Location = new System.Drawing.Point(12, 96);
             this.checkEmail.Name = "checkEmail";
             this.checkEmail.Size = new System.Drawing.Size(79, 17);
             this.checkEmail.TabIndex = 15;
@@ -99,7 +109,7 @@
             // checkSMS
             // 
             this.checkSMS.AutoSize = true;
-            this.checkSMS.Location = new System.Drawing.Point(13, 172);
+            this.checkSMS.Location = new System.Drawing.Point(12, 119);
             this.checkSMS.Name = "checkSMS";
             this.checkSMS.Size = new System.Drawing.Size(77, 17);
             this.checkSMS.TabIndex = 16;
@@ -110,7 +120,7 @@
             // editEmail
             // 
             this.editEmail.Enabled = false;
-            this.editEmail.Location = new System.Drawing.Point(99, 149);
+            this.editEmail.Location = new System.Drawing.Point(98, 96);
             this.editEmail.Name = "editEmail";
             this.editEmail.Size = new System.Drawing.Size(136, 20);
             this.editEmail.TabIndex = 17;
@@ -120,7 +130,7 @@
             // editMobileNumber
             // 
             this.editMobileNumber.Enabled = false;
-            this.editMobileNumber.Location = new System.Drawing.Point(100, 172);
+            this.editMobileNumber.Location = new System.Drawing.Point(99, 119);
             this.editMobileNumber.Name = "editMobileNumber";
             this.editMobileNumber.Size = new System.Drawing.Size(135, 20);
             this.editMobileNumber.TabIndex = 18;
@@ -132,9 +142,9 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(9, 22);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(83, 13);
+            this.label2.Size = new System.Drawing.Size(84, 13);
             this.label2.TabIndex = 19;
-            this.label2.Text = "Photos directory";
+            this.label2.Text = "Images directory";
             // 
             // editFolderSelect
             // 
@@ -154,11 +164,100 @@
             this.btnSelectFolder.UseVisualStyleBackColor = true;
             this.btnSelectFolder.Click += new System.EventHandler(this.btnSelectFolder_Click);
             // 
+            // imgForCompare
+            // 
+            this.imgForCompare.Location = new System.Drawing.Point(11, 172);
+            this.imgForCompare.Name = "imgForCompare";
+            this.imgForCompare.Size = new System.Drawing.Size(222, 163);
+            this.imgForCompare.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.imgForCompare.TabIndex = 22;
+            this.imgForCompare.TabStop = false;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(73, 156);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(95, 13);
+            this.label3.TabIndex = 23;
+            this.label3.Text = "Image for compare";
+            // 
+            // btnCapture
+            // 
+            this.btnCapture.Location = new System.Drawing.Point(18, 341);
+            this.btnCapture.Name = "btnCapture";
+            this.btnCapture.Size = new System.Drawing.Size(75, 23);
+            this.btnCapture.TabIndex = 24;
+            this.btnCapture.Text = "Capture";
+            this.btnCapture.UseVisualStyleBackColor = true;
+            this.btnCapture.Visible = false;
+            this.btnCapture.Click += new System.EventHandler(this.btnCapture_Click);
+            // 
+            // btnFromFile
+            // 
+            this.btnFromFile.Location = new System.Drawing.Point(143, 341);
+            this.btnFromFile.Name = "btnFromFile";
+            this.btnFromFile.Size = new System.Drawing.Size(75, 23);
+            this.btnFromFile.TabIndex = 25;
+            this.btnFromFile.Text = "From File";
+            this.btnFromFile.UseVisualStyleBackColor = true;
+            this.btnFromFile.Visible = false;
+            this.btnFromFile.Click += new System.EventHandler(this.btnFromFile_Click);
+            // 
+            // btnChange
+            // 
+            this.btnChange.Location = new System.Drawing.Point(92, 341);
+            this.btnChange.Name = "btnChange";
+            this.btnChange.Size = new System.Drawing.Size(59, 23);
+            this.btnChange.TabIndex = 26;
+            this.btnChange.Text = "Change";
+            this.btnChange.UseVisualStyleBackColor = true;
+            this.btnChange.Click += new System.EventHandler(this.btnChange_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(10, 72);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(112, 13);
+            this.label4.TabIndex = 27;
+            this.label4.Text = "Snapshoot delay (sec)\r\n";
+            // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Location = new System.Drawing.Point(130, 70);
+            this.numericUpDown1.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(120, 20);
+            this.numericUpDown1.TabIndex = 28;
+            this.numericUpDown1.Value = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
+            this.numericUpDown1.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
+            // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(428, 350);
+            this.ClientSize = new System.Drawing.Size(424, 380);
+            this.Controls.Add(this.numericUpDown1);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.btnChange);
+            this.Controls.Add(this.btnFromFile);
+            this.Controls.Add(this.btnCapture);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.imgForCompare);
             this.Controls.Add(this.btnSelectFolder);
             this.Controls.Add(this.editFolderSelect);
             this.Controls.Add(this.label2);
@@ -172,8 +271,11 @@
             this.Controls.Add(this.btnDevice);
             this.Name = "Settings";
             this.Text = "Settings";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Settings_FormClosed);
             this.Load += new System.EventHandler(this.Settings_Load);
             ((System.ComponentModel.ISupportInitialize)(this.editPercantage)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgForCompare)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -193,5 +295,13 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox editFolderSelect;
         private System.Windows.Forms.Button btnSelectFolder;
+        private System.Windows.Forms.PictureBox imgForCompare;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btnCapture;
+        private System.Windows.Forms.Button btnFromFile;
+        private System.Windows.Forms.Button btnChange;
+        private System.Windows.Forms.OpenFileDialog dialogFromFile;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.NumericUpDown numericUpDown1;
     }
 }

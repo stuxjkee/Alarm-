@@ -15,16 +15,20 @@ namespace Alarm_ {
             InitializeComponent();
         }
 
-        WebCam webcam;
 
         private void mainForm_Load(object sender, EventArgs e) {
             Values.webcam = new WebCam();
-            Values.webcam.InitializaWebCam(ref imgVideo);
+            Values.webcam.InitializeWebCam(ref imgVideo);
             Values.webcam.Start();
         }
 
         private void btnStart_Click(object sender, EventArgs e) {
-            Monitor.Start();
+            btnSettings_Click(btnSettings, null);
+            if (Values.forCompare == null) {
+                MessageBox.Show("Error. Image for comparing not found");
+            } else {
+                Monitor.Start();
+            }
         }
 
         private void btnStop_Click(object sender, EventArgs e) {
@@ -36,12 +40,15 @@ namespace Alarm_ {
         }
 
         private void captureBtn_Click(object sender, EventArgs e) {
-            Helper.saveImg(imgVideo.Image, DateTime.Now.ToString("HH.mm.ss") + ".jpg");
+            Helper.saveImg(imgVideo.Image, Values.folderPath + DateTime.Now.ToString("HH.mm.ss") + ".jpg");
         }
 
         private void btnSettings_Click(object sender, EventArgs e) {
             Settings wnd = new Settings();
+            
             wnd.ShowDialog();
         }
+
+        
     }
 }
