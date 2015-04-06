@@ -35,7 +35,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.editFolderSelect = new System.Windows.Forms.TextBox();
             this.btnSelectFolder = new System.Windows.Forms.Button();
-            this.imgForCompare = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
             this.btnCapture = new System.Windows.Forms.Button();
             this.btnFromFile = new System.Windows.Forms.Button();
@@ -43,9 +42,12 @@
             this.dialogFromFile = new System.Windows.Forms.OpenFileDialog();
             this.label4 = new System.Windows.Forms.Label();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.btnSMSSettings = new System.Windows.Forms.Button();
+            this.imgForCompare = new System.Windows.Forms.PictureBox();
+            this.btnOK = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.editPercantage)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.imgForCompare)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgForCompare)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -69,7 +71,7 @@
             this.editPercantage.Size = new System.Drawing.Size(71, 20);
             this.editPercantage.TabIndex = 13;
             this.editPercantage.Value = new decimal(new int[] {
-            10,
+            15,
             0,
             0,
             0});
@@ -164,15 +166,6 @@
             this.btnSelectFolder.UseVisualStyleBackColor = true;
             this.btnSelectFolder.Click += new System.EventHandler(this.btnSelectFolder_Click);
             // 
-            // imgForCompare
-            // 
-            this.imgForCompare.Location = new System.Drawing.Point(11, 172);
-            this.imgForCompare.Name = "imgForCompare";
-            this.imgForCompare.Size = new System.Drawing.Size(222, 163);
-            this.imgForCompare.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.imgForCompare.TabIndex = 22;
-            this.imgForCompare.TabStop = false;
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -240,17 +233,49 @@
             this.numericUpDown1.Size = new System.Drawing.Size(120, 20);
             this.numericUpDown1.TabIndex = 28;
             this.numericUpDown1.Value = new decimal(new int[] {
-            3,
+            5,
             0,
             0,
             0});
             this.numericUpDown1.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
+            // 
+            // btnSMSSettings
+            // 
+            this.btnSMSSettings.Enabled = false;
+            this.btnSMSSettings.Location = new System.Drawing.Point(240, 119);
+            this.btnSMSSettings.Name = "btnSMSSettings";
+            this.btnSMSSettings.Size = new System.Drawing.Size(61, 20);
+            this.btnSMSSettings.TabIndex = 29;
+            this.btnSMSSettings.Text = "Settings";
+            this.btnSMSSettings.UseVisualStyleBackColor = true;
+            this.btnSMSSettings.Click += new System.EventHandler(this.btnSMSSettings_Click);
+            // 
+            // imgForCompare
+            // 
+            this.imgForCompare.Location = new System.Drawing.Point(11, 172);
+            this.imgForCompare.Name = "imgForCompare";
+            this.imgForCompare.Size = new System.Drawing.Size(222, 163);
+            this.imgForCompare.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.imgForCompare.TabIndex = 22;
+            this.imgForCompare.TabStop = false;
+            // 
+            // btnOK
+            // 
+            this.btnOK.Location = new System.Drawing.Point(341, 345);
+            this.btnOK.Name = "btnOK";
+            this.btnOK.Size = new System.Drawing.Size(75, 23);
+            this.btnOK.TabIndex = 30;
+            this.btnOK.Text = "OK";
+            this.btnOK.UseVisualStyleBackColor = true;
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(424, 380);
+            this.Controls.Add(this.btnOK);
+            this.Controls.Add(this.btnSMSSettings);
             this.Controls.Add(this.numericUpDown1);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.btnChange);
@@ -274,8 +299,8 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Settings_FormClosed);
             this.Load += new System.EventHandler(this.Settings_Load);
             ((System.ComponentModel.ISupportInitialize)(this.editPercantage)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.imgForCompare)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgForCompare)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -303,5 +328,7 @@
         private System.Windows.Forms.OpenFileDialog dialogFromFile;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.Button btnSMSSettings;
+        private System.Windows.Forms.Button btnOK;
     }
 }

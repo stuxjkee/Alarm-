@@ -35,6 +35,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="system.web" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -58,6 +60,7 @@
       <DependentUpon>baseDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="Helper.cs" />
+    <Compile Include="Mail.cs" />
     <Compile Include="mainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -73,6 +76,13 @@
     <Compile Include="Settings.Designer.cs">
       <DependentUpon>Settings.cs</DependentUpon>
     </Compile>
+    <Compile Include="smsc_api.cs" />
+    <Compile Include="SmsSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SmsSettings.Designer.cs">
+      <DependentUpon>SmsSettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="Values.cs" />
     <Compile Include="WebCam.cs" />
     <EmbeddedResource Include="mainForm.resx">
@@ -86,9 +96,13 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Settings.resx">
       <DependentUpon>Settings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SmsSettings.resx">
+      <DependentUpon>SmsSettings.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="baseDataSet.xsc">
       <DependentUpon>baseDataSet.xsd</DependentUpon>

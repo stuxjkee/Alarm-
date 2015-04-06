@@ -70,6 +70,12 @@ namespace Alarm_ {
 
         private void checkSMS_CheckedChanged(object sender, EventArgs e) {
             Values.smsNotify = editMobileNumber.Enabled = checkSMS.Checked;
+            btnSMSSettings.Enabled = checkSMS.Checked;
+            if (checkSMS.Checked && Values.smscLogin == "") {
+                SmsSettings wnd = new SmsSettings();
+                wnd.ShowDialog();
+                checkSMS.Checked = Values.smsNotify = editMobileNumber.Enabled = Values.smscLogin != "";
+            }
         }
 
         private void editPercantage_ValueChanged(object sender, EventArgs e) {
@@ -137,6 +143,7 @@ namespace Alarm_ {
                     MessageBox.Show("Wrong e-mail");
                     editEmail.Text = "";
                     Values.smsNotify = false;
+                    
                 } else {
                     Values.email = editEmail.Text;
                     Values.emailNotify = true;
@@ -152,6 +159,13 @@ namespace Alarm_ {
                     editMobileNumber.Text = "";
                     Values.smsNotify = false;
                 } else {
+                    if (editMobileNumber.Text[0] == '+') {
+                        editMobileNumber.Text = editMobileNumber.Text.Substring(1, editMobileNumber.Text.Length-1);
+                    } else if (editMobileNumber.Text[0] == '8') {
+                        editMobileNumber.Text = '3' + editMobileNumber.Text;
+                    } else if (editMobileNumber.Text[0] == '0') {
+                        editMobileNumber.Text = "38" + editMobileNumber.Text;
+                    }
                     Values.mobile = editMobileNumber.Text;
                     Values.smsNotify = true;
                 }
@@ -162,6 +176,15 @@ namespace Alarm_ {
         private void numericUpDown1_ValueChanged(object sender, EventArgs e) {
             var o = (NumericUpDown)sender;
             Values.delay = (int)o.Value;
+        }
+
+        private void btnSMSSettings_Click(object sender, EventArgs e) {
+            SmsSettings wnd = new SmsSettings();
+            wnd.ShowDialog();
+        }
+
+        private void btnOK_Click(object sender, EventArgs e) {
+            this.Close();
         }
               
     }

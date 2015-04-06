@@ -95,6 +95,7 @@
             this.Name = "mainForm";
             this.Text = "ALARM!";
             this.TransparencyKey = System.Drawing.SystemColors.ActiveBorder;
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.mainForm_FormClosed);
             this.Load += new System.EventHandler(this.mainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.imgVideo)).EndInit();
             this.ResumeLayout(false);

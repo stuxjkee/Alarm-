@@ -18,5 +18,9 @@ namespace Alarm_ {
         public static string mobile;
         public static bool smsNotify = false;
         public static bool emailNotify = false;
+        public static PictureBox imgVideo;
+        public static int framesCnt = 3;
+        public static string smscLogin = "";
+        public static string smscPassword = "";
     }
 }
