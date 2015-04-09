@@ -27,6 +27,7 @@ namespace Alarm_ {
                 MessageBox.Show("Balance: " + smsc.get_balance(), "Success!");
                 Values.smscLogin = editUsername.Text;
                 Values.smscPassword = editPassword.Text;
+                Values.logger.Add("changed SMS Settings");
                 this.Close();
             }
         }

@@ -21,20 +21,30 @@ namespace Alarm_ {
                     Thread.Sleep(Values.delay * 1000);
                 } catch (ThreadInterruptedException ignored) { }
                 Image img = Values.imgVideo.Image;
-                float diff = img.PercentageDifference(Values.forCompare);
+                float diff = 0;
+                try {
+                    diff = img.PercentageDifference(Values.forCompare);
+                } catch (InvalidOperationException ignored) {}
                 if (diff * 100 > Values.percentage) {
+                    Values.logger.Add("Possible danger (" + (diff * 100).ToString() + "%)");
                     mainForm.DANGER();
                     string filename = Values.folderPath + "\\" + DateTime.Now.ToString("HH.mm.ss") + ".jpg";
+                    
                     Helper.saveImg(img, filename);
                     if (Values.smsNotify) {
                         SMSC smsc = new SMSC();
                         smsc.send_sms(Values.mobile,
                         "Possible danger at " + DateTime.Now.ToString("dd MMM HH:mm:ss") + "Please check your email",
                         0, "", 0, 0, "Alarm");
+                        Values.logger.Add("SMS notify sended");
                     }
 
                     if (Values.emailNotify) {
                         List<string> filenames = new List<string>();
+                        filenames.Add(filename);
+                        Mail.email_send(filenames);
+                        filenames.RemoveAt(0);
+                        Values.logger.Add("First e-mail sended");
                         for (int i = 0; i < Values.framesCnt; i++) {
                             filename = Values.folderPath + "\\" + DateTime.Now.ToString("HH.mm.ss") + ".jpg";
                             Helper.saveImg(img, filename);
@@ -45,6 +55,7 @@ namespace Alarm_ {
                             } catch (ThreadInterruptedException ignored) { }
                         }
                         Mail.email_send(filenames);
+                        Values.logger.Add("Second email with" + Values.framesCnt.ToString() + " frames sended");
                     }
 
                     

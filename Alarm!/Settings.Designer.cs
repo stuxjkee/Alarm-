@@ -41,12 +41,16 @@
             this.btnChange = new System.Windows.Forms.Button();
             this.dialogFromFile = new System.Windows.Forms.OpenFileDialog();
             this.label4 = new System.Windows.Forms.Label();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.editDelay = new System.Windows.Forms.NumericUpDown();
             this.btnSMSSettings = new System.Windows.Forms.Button();
             this.imgForCompare = new System.Windows.Forms.PictureBox();
             this.btnOK = new System.Windows.Forms.Button();
+            this.checkSoundNotify = new System.Windows.Forms.CheckBox();
+            this.editSoundFilename = new System.Windows.Forms.TextBox();
+            this.btnChoiceSound = new System.Windows.Forms.Button();
+            this.dialogSoundSelect = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.editPercantage)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.editDelay)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgForCompare)).BeginInit();
             this.SuspendLayout();
             // 
@@ -68,7 +72,7 @@
             0});
             this.editPercantage.Location = new System.Drawing.Point(130, 44);
             this.editPercantage.Name = "editPercantage";
-            this.editPercantage.Size = new System.Drawing.Size(71, 20);
+            this.editPercantage.Size = new System.Drawing.Size(104, 20);
             this.editPercantage.TabIndex = 13;
             this.editPercantage.Value = new decimal(new int[] {
             15,
@@ -100,7 +104,7 @@
             // checkEmail
             // 
             this.checkEmail.AutoSize = true;
-            this.checkEmail.Location = new System.Drawing.Point(12, 96);
+            this.checkEmail.Location = new System.Drawing.Point(13, 101);
             this.checkEmail.Name = "checkEmail";
             this.checkEmail.Size = new System.Drawing.Size(79, 17);
             this.checkEmail.TabIndex = 15;
@@ -111,7 +115,7 @@
             // checkSMS
             // 
             this.checkSMS.AutoSize = true;
-            this.checkSMS.Location = new System.Drawing.Point(12, 119);
+            this.checkSMS.Location = new System.Drawing.Point(13, 127);
             this.checkSMS.Name = "checkSMS";
             this.checkSMS.Size = new System.Drawing.Size(77, 17);
             this.checkSMS.TabIndex = 16;
@@ -122,9 +126,9 @@
             // editEmail
             // 
             this.editEmail.Enabled = false;
-            this.editEmail.Location = new System.Drawing.Point(98, 96);
+            this.editEmail.Location = new System.Drawing.Point(100, 101);
             this.editEmail.Name = "editEmail";
-            this.editEmail.Size = new System.Drawing.Size(136, 20);
+            this.editEmail.Size = new System.Drawing.Size(133, 20);
             this.editEmail.TabIndex = 17;
             this.editEmail.Enter += new System.EventHandler(this.editEmail_Enter);
             this.editEmail.Leave += new System.EventHandler(this.editEmail_Leave);
@@ -132,9 +136,9 @@
             // editMobileNumber
             // 
             this.editMobileNumber.Enabled = false;
-            this.editMobileNumber.Location = new System.Drawing.Point(99, 119);
+            this.editMobileNumber.Location = new System.Drawing.Point(100, 125);
             this.editMobileNumber.Name = "editMobileNumber";
-            this.editMobileNumber.Size = new System.Drawing.Size(135, 20);
+            this.editMobileNumber.Size = new System.Drawing.Size(133, 20);
             this.editMobileNumber.TabIndex = 18;
             this.editMobileNumber.Enter += new System.EventHandler(this.editMobileNumber_Enter);
             this.editMobileNumber.Leave += new System.EventHandler(this.editMobileNumber_Leave);
@@ -153,14 +157,14 @@
             this.editFolderSelect.Enabled = false;
             this.editFolderSelect.Location = new System.Drawing.Point(98, 19);
             this.editFolderSelect.Name = "editFolderSelect";
-            this.editFolderSelect.Size = new System.Drawing.Size(120, 20);
+            this.editFolderSelect.Size = new System.Drawing.Size(135, 20);
             this.editFolderSelect.TabIndex = 20;
             // 
             // btnSelectFolder
             // 
-            this.btnSelectFolder.Location = new System.Drawing.Point(224, 17);
+            this.btnSelectFolder.Location = new System.Drawing.Point(240, 17);
             this.btnSelectFolder.Name = "btnSelectFolder";
-            this.btnSelectFolder.Size = new System.Drawing.Size(60, 23);
+            this.btnSelectFolder.Size = new System.Drawing.Size(60, 22);
             this.btnSelectFolder.TabIndex = 21;
             this.btnSelectFolder.Text = "Change";
             this.btnSelectFolder.UseVisualStyleBackColor = true;
@@ -169,7 +173,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(73, 156);
+            this.label3.Location = new System.Drawing.Point(75, 177);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(95, 13);
             this.label3.TabIndex = 23;
@@ -177,7 +181,7 @@
             // 
             // btnCapture
             // 
-            this.btnCapture.Location = new System.Drawing.Point(18, 341);
+            this.btnCapture.Location = new System.Drawing.Point(20, 362);
             this.btnCapture.Name = "btnCapture";
             this.btnCapture.Size = new System.Drawing.Size(75, 23);
             this.btnCapture.TabIndex = 24;
@@ -188,7 +192,7 @@
             // 
             // btnFromFile
             // 
-            this.btnFromFile.Location = new System.Drawing.Point(143, 341);
+            this.btnFromFile.Location = new System.Drawing.Point(145, 362);
             this.btnFromFile.Name = "btnFromFile";
             this.btnFromFile.Size = new System.Drawing.Size(75, 23);
             this.btnFromFile.TabIndex = 25;
@@ -199,7 +203,7 @@
             // 
             // btnChange
             // 
-            this.btnChange.Location = new System.Drawing.Point(92, 341);
+            this.btnChange.Location = new System.Drawing.Point(94, 362);
             this.btnChange.Name = "btnChange";
             this.btnChange.Size = new System.Drawing.Size(59, 23);
             this.btnChange.TabIndex = 26;
@@ -216,35 +220,35 @@
             this.label4.TabIndex = 27;
             this.label4.Text = "Snapshoot delay (sec)\r\n";
             // 
-            // numericUpDown1
+            // editDelay
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(130, 70);
-            this.numericUpDown1.Maximum = new decimal(new int[] {
+            this.editDelay.Location = new System.Drawing.Point(130, 70);
+            this.editDelay.Maximum = new decimal(new int[] {
             10,
             0,
             0,
             0});
-            this.numericUpDown1.Minimum = new decimal(new int[] {
+            this.editDelay.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(120, 20);
-            this.numericUpDown1.TabIndex = 28;
-            this.numericUpDown1.Value = new decimal(new int[] {
+            this.editDelay.Name = "editDelay";
+            this.editDelay.Size = new System.Drawing.Size(104, 20);
+            this.editDelay.TabIndex = 28;
+            this.editDelay.Value = new decimal(new int[] {
             5,
             0,
             0,
             0});
-            this.numericUpDown1.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
+            this.editDelay.ValueChanged += new System.EventHandler(this.editDelay_ValueChanged);
             // 
             // btnSMSSettings
             // 
             this.btnSMSSettings.Enabled = false;
-            this.btnSMSSettings.Location = new System.Drawing.Point(240, 119);
+            this.btnSMSSettings.Location = new System.Drawing.Point(239, 124);
             this.btnSMSSettings.Name = "btnSMSSettings";
-            this.btnSMSSettings.Size = new System.Drawing.Size(61, 20);
+            this.btnSMSSettings.Size = new System.Drawing.Size(60, 23);
             this.btnSMSSettings.TabIndex = 29;
             this.btnSMSSettings.Text = "Settings";
             this.btnSMSSettings.UseVisualStyleBackColor = true;
@@ -252,7 +256,7 @@
             // 
             // imgForCompare
             // 
-            this.imgForCompare.Location = new System.Drawing.Point(11, 172);
+            this.imgForCompare.Location = new System.Drawing.Point(13, 193);
             this.imgForCompare.Name = "imgForCompare";
             this.imgForCompare.Size = new System.Drawing.Size(222, 163);
             this.imgForCompare.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -261,7 +265,7 @@
             // 
             // btnOK
             // 
-            this.btnOK.Location = new System.Drawing.Point(341, 345);
+            this.btnOK.Location = new System.Drawing.Point(341, 360);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
             this.btnOK.TabIndex = 30;
@@ -269,14 +273,46 @@
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
+            // checkSoundNotify
+            // 
+            this.checkSoundNotify.AutoSize = true;
+            this.checkSoundNotify.Location = new System.Drawing.Point(13, 153);
+            this.checkSoundNotify.Name = "checkSoundNotify";
+            this.checkSoundNotify.Size = new System.Drawing.Size(85, 17);
+            this.checkSoundNotify.TabIndex = 31;
+            this.checkSoundNotify.Text = "Sound notify";
+            this.checkSoundNotify.UseVisualStyleBackColor = true;
+            this.checkSoundNotify.CheckedChanged += new System.EventHandler(this.checkSoundNotify_CheckedChanged);
+            // 
+            // editSoundFilename
+            // 
+            this.editSoundFilename.Enabled = false;
+            this.editSoundFilename.Location = new System.Drawing.Point(100, 148);
+            this.editSoundFilename.Name = "editSoundFilename";
+            this.editSoundFilename.Size = new System.Drawing.Size(133, 20);
+            this.editSoundFilename.TabIndex = 32;
+            // 
+            // btnChoiceSound
+            // 
+            this.btnChoiceSound.Location = new System.Drawing.Point(239, 148);
+            this.btnChoiceSound.Name = "btnChoiceSound";
+            this.btnChoiceSound.Size = new System.Drawing.Size(60, 22);
+            this.btnChoiceSound.TabIndex = 33;
+            this.btnChoiceSound.Text = "Choice";
+            this.btnChoiceSound.UseVisualStyleBackColor = true;
+            this.btnChoiceSound.Click += new System.EventHandler(this.btnChoiceSound_Click);
+            // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(424, 380);
+            this.ClientSize = new System.Drawing.Size(424, 399);
+            this.Controls.Add(this.btnChoiceSound);
+            this.Controls.Add(this.editSoundFilename);
+            this.Controls.Add(this.checkSoundNotify);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.btnSMSSettings);
-            this.Controls.Add(this.numericUpDown1);
+            this.Controls.Add(this.editDelay);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.btnChange);
             this.Controls.Add(this.btnFromFile);
@@ -295,11 +331,12 @@
             this.Controls.Add(this.btnResolution);
             this.Controls.Add(this.btnDevice);
             this.Name = "Settings";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Settings";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Settings_FormClosed);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Settings_FormClosing);
             this.Load += new System.EventHandler(this.Settings_Load);
             ((System.ComponentModel.ISupportInitialize)(this.editPercantage)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.editDelay)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgForCompare)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -327,8 +364,12 @@
         private System.Windows.Forms.Button btnChange;
         private System.Windows.Forms.OpenFileDialog dialogFromFile;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown editDelay;
         private System.Windows.Forms.Button btnSMSSettings;
         private System.Windows.Forms.Button btnOK;
+        private System.Windows.Forms.CheckBox checkSoundNotify;
+        private System.Windows.Forms.TextBox editSoundFilename;
+        private System.Windows.Forms.Button btnChoiceSound;
+        private System.Windows.Forms.OpenFileDialog dialogSoundSelect;
     }
 }

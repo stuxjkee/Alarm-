@@ -109,6 +109,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cbSMSService);
             this.Name = "SmsSettings";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "SmsSettings";
             this.Load += new System.EventHandler(this.SmsSettings_Load);
             this.ResumeLayout(false);

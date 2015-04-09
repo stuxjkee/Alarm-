@@ -34,6 +34,15 @@ namespace Alarm_ {
                 checkSMS.Checked = true;
                 editMobileNumber.Text = Values.mobile;
             }
+            if (Values.soundNotify) {
+                checkSoundNotify.Checked = true;
+                btnChoiceSound.Enabled = true;
+                editSoundFilename.Text = Path.GetFileName(Values.soundFileName);
+            } else {
+                btnChoiceSound.Enabled = false;
+            }
+            editPercantage.Value = Values.percentage;
+            editDelay.Value = Values.delay;
         }
 
         private void editEmail_Leave(object sender, EventArgs e) {
@@ -79,21 +88,24 @@ namespace Alarm_ {
         }
 
         private void editPercantage_ValueChanged(object sender, EventArgs e) {
-            var o = (NumericUpDown)sender;
-            Values.percentage = (int)o.Value;
+            Values.percentage = (int)editPercantage.Value;
+            Values.logger.Add("Percentage changed" + Values.percentage.ToString() + "%");
         }
 
         private void btnDevice_Click(object sender, EventArgs e) {
             Values.webcam.advanceSettings();
+            Values.logger.Add("Device settings changed");
         }
 
         private void btnResolution_Click(object sender, EventArgs e) {
             Values.webcam.resolutionSettings();
+            Values.logger.Add("Resolution settings changed");
         }
 
         private void btnSelectFolder_Click(object sender, EventArgs e) {
             dialogFolderSelect.ShowDialog();
             Values.folderPath = editFolderSelect.Text = dialogFolderSelect.SelectedPath;
+            Values.logger.Add("Imagaes path changed: " + editFolderSelect.Text);
         }
 
         private void btnCapture_Click(object sender, EventArgs e) {
@@ -104,6 +116,7 @@ namespace Alarm_ {
             btnCapture.Visible = false;
             btnFromFile.Visible = false;
             Values.forCompare = imgForCompare.Image;
+            Values.logger.Add("Image for compare changed (captured)");
         }
 
         private void btnChange_Click(object sender, EventArgs e) {
@@ -128,54 +141,18 @@ namespace Alarm_ {
                         imgForCompare.Image = Values.forCompare = (Image)img.Clone();
                     }
                 }
+                Values.logger.Add("Image for compare changed (loaded)" + dialogFromFile.FileName);
             }
             dialogFromFile.Dispose();
             
         }
 
         private void Settings_FormClosed(object sender, FormClosedEventArgs e) {
-            Values.smsNotify = false;
-            Values.emailNotify = false;
-            if (checkEmail.Checked) {
-                string exprEmail = "[.\\-_a-z0-9]+@([a-z0-9][\\-a-z0-9]+\\.)+[a-z]{2,6}";
-                Match isMatch = Regex.Match(editEmail.Text, exprEmail, RegexOptions.IgnoreCase);
-                if (!isMatch.Success) {
-                    MessageBox.Show("Wrong e-mail");
-                    editEmail.Text = "";
-                    Values.smsNotify = false;
-                    
-                } else {
-                    Values.email = editEmail.Text;
-                    Values.emailNotify = true;
-                }
-            } 
-
-            if (checkSMS.Checked) {
-
-                string exprMobileNumber = "^((8|\\+3)[\\- ]?)?(\\(?\\d{3,4}\\)?[\\- ]?)?[\\d\\- ]{5,11}$";
-                Match isMatch = Regex.Match(editMobileNumber.Text, exprMobileNumber);
-                if (!isMatch.Success) {
-                    MessageBox.Show("Wrong mobile number");
-                    editMobileNumber.Text = "";
-                    Values.smsNotify = false;
-                } else {
-                    if (editMobileNumber.Text[0] == '+') {
-                        editMobileNumber.Text = editMobileNumber.Text.Substring(1, editMobileNumber.Text.Length-1);
-                    } else if (editMobileNumber.Text[0] == '8') {
-                        editMobileNumber.Text = '3' + editMobileNumber.Text;
-                    } else if (editMobileNumber.Text[0] == '0') {
-                        editMobileNumber.Text = "38" + editMobileNumber.Text;
-                    }
-                    Values.mobile = editMobileNumber.Text;
-                    Values.smsNotify = true;
-                }
-            }
-        
+            
         }
 
-        private void numericUpDown1_ValueChanged(object sender, EventArgs e) {
-            var o = (NumericUpDown)sender;
-            Values.delay = (int)o.Value;
+        private void editDelay_ValueChanged(object sender, EventArgs e) {
+            Values.delay = (int)editDelay.Value;
         }
 
         private void btnSMSSettings_Click(object sender, EventArgs e) {
@@ -185,6 +162,75 @@ namespace Alarm_ {
 
         private void btnOK_Click(object sender, EventArgs e) {
             this.Close();
+        }
+
+        private void Settings_FormClosing(object sender, FormClosingEventArgs e) {
+            Values.smsNotify = false;
+            Values.emailNotify = false;
+            if (checkEmail.Checked) {
+                string exprEmail = "[.\\-_a-z0-9]+@([a-z0-9][\\-a-z0-9]+\\.)+[a-z]{2,6}";
+                Match isMatch = Regex.Match(editEmail.Text, exprEmail, RegexOptions.IgnoreCase);
+                if (!isMatch.Success) {
+                    MessageBox.Show("Wrong e-mail");
+                    editEmail.Text = "";
+                    Values.smsNotify = false;
+                    checkEmail.Checked = false;
+                    editEmail_Leave(null, null);
+                    e.Cancel = true;
+
+                } else {
+                    Values.email = editEmail.Text;
+                    Values.emailNotify = true;
+                    Values.logger.Add("Email notify enabled");
+                }
+            }
+
+            if (checkSMS.Checked) {
+
+                string exprMobileNumber = "^((8|\\+3)[\\- ]?)?(\\(?\\d{3,4}\\)?[\\- ]?)?[\\d\\- ]{5,11}$";
+                Match isMatch = Regex.Match(editMobileNumber.Text, exprMobileNumber);
+                if (!isMatch.Success) {
+                    MessageBox.Show("Wrong mobile number");
+                    editMobileNumber.Text = "";
+                    Values.smsNotify = false;
+                    checkSMS.Checked = false;
+                    editMobileNumber_Leave(null, null);
+                    e.Cancel = true;
+                } else {
+                    if (editMobileNumber.Text[0] == '+') {
+                        editMobileNumber.Text = editMobileNumber.Text.Substring(1, editMobileNumber.Text.Length - 1);
+                    } else if (editMobileNumber.Text[0] == '8') {
+                        editMobileNumber.Text = '3' + editMobileNumber.Text;
+                    } else if (editMobileNumber.Text[0] == '0') {
+                        editMobileNumber.Text = "38" + editMobileNumber.Text;
+                    }
+                    Values.mobile = editMobileNumber.Text;
+                    Values.smsNotify = true;
+                    Values.logger.Add("SMS notify enabled");
+                }
+            }
+        }
+
+        private void btnChoiceSound_Click(object sender, EventArgs e) {
+            dialogSoundSelect.Filter = "Music Files (*.mp3)|*.mp3";
+            if (dialogSoundSelect.ShowDialog() == System.Windows.Forms.DialogResult.OK) {
+                Values.soundFileName = dialogSoundSelect.FileName;
+                Values.soundNotify = true;
+                editSoundFilename.Text = dialogSoundSelect.SafeFileName;
+                btnChoiceSound.Enabled = true;
+            } else if (!Values.soundNotify) {
+                checkSoundNotify.Checked = false;
+                btnChoiceSound.Enabled = false;
+            }
+        }
+
+        private void checkSoundNotify_CheckedChanged(object sender, EventArgs e) {
+            if (checkSoundNotify.Checked && !Values.soundNotify) {
+                btnChoiceSound_Click(null, null);
+            } else {
+                Values.soundNotify = false;
+                btnChoiceSound.Enabled = false;
+            }
         }
               
     }

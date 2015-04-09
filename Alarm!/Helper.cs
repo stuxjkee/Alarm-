@@ -12,15 +12,14 @@ using System.Drawing.Imaging;
 namespace Alarm_ {
     class Helper {
         public static void saveImg(System.Drawing.Image img, string fileName) {
-            try {
-                FileStream fstream = new FileStream(fileName, FileMode.Create);
-                img.Save(fstream, System.Drawing.Imaging.ImageFormat.Jpeg);
-                fstream.Close();
-            } catch (Exception e) {
-                MessageBox.Show(e.Message);
+            /*FileStream fstream = new FileStream(fileName, FileMode.Create);
+            img.Save(fstream, System.Drawing.Imaging.ImageFormat.Jpeg);
+            fstream.Close();*/
+
+            using (FileStream fs = new FileStream(fileName, FileMode.Create)) {
+                img.Save(fs, System.Drawing.Imaging.ImageFormat.Jpeg);
             }
         }
-           
 
      }
 }

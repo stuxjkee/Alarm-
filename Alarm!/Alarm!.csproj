@@ -59,7 +59,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>baseDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Flasher.cs" />
     <Compile Include="Helper.cs" />
+    <Compile Include="Logger.cs" />
     <Compile Include="Mail.cs" />
     <Compile Include="mainForm.cs">
       <SubType>Form</SubType>
