@@ -48,7 +48,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>icon.ico</ApplicationIcon>
+    <ApplicationIcon>ic.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AForge.Imaging, Version=2.2.5.0, Culture=neutral, PublicKeyToken=ba8ddea9676ca48b, processorArchitecture=MSIL">
@@ -184,6 +184,8 @@
     <None Include="bin\Debug\Sounds\alarm.wav" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ic.ico" />
+    <Content Include="ico.ico" />
     <Content Include="icon.ico" />
   </ItemGroup>
   <ItemGroup>
