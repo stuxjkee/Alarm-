@@ -36,7 +36,9 @@ namespace Alarm_ {
         }
         public void Stop() {
             isRunning = false;
-            thread.Abort();
+            try {
+                thread.Abort();
+            } catch (ThreadAbortException ignored) { }
             if (label.InvokeRequired) {
                 label.BeginInvoke(new Action(() => label.Visible = false));
             } else {

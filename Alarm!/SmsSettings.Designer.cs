@@ -30,6 +30,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.editPassword = new System.Windows.Forms.TextBox();
             this.btnAccept = new System.Windows.Forms.Button();
+            this.bntClose = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // cbSMSService
@@ -88,7 +89,7 @@
             // 
             // btnAccept
             // 
-            this.btnAccept.Location = new System.Drawing.Point(76, 106);
+            this.btnAccept.Location = new System.Drawing.Point(30, 106);
             this.btnAccept.Name = "btnAccept";
             this.btnAccept.Size = new System.Drawing.Size(74, 33);
             this.btnAccept.TabIndex = 6;
@@ -96,11 +97,23 @@
             this.btnAccept.UseVisualStyleBackColor = true;
             this.btnAccept.Click += new System.EventHandler(this.btnAccept_Click);
             // 
+            // bntClose
+            // 
+            this.bntClose.Location = new System.Drawing.Point(125, 106);
+            this.bntClose.Name = "bntClose";
+            this.bntClose.Size = new System.Drawing.Size(74, 33);
+            this.bntClose.TabIndex = 7;
+            this.bntClose.Text = "Close";
+            this.bntClose.UseVisualStyleBackColor = true;
+            this.bntClose.Click += new System.EventHandler(this.bntClose_Click);
+            // 
             // SmsSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(229, 151);
+            this.ControlBox = false;
+            this.Controls.Add(this.bntClose);
             this.Controls.Add(this.btnAccept);
             this.Controls.Add(this.editPassword);
             this.Controls.Add(this.label3);
@@ -126,5 +139,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox editPassword;
         private System.Windows.Forms.Button btnAccept;
+        private System.Windows.Forms.Button bntClose;
     }
 }

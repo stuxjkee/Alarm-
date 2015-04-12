@@ -40,5 +40,9 @@ namespace Alarm_ {
                 editPassword.Text = Values.smscPassword;
             }
         }
+
+        private void bntClose_Click(object sender, EventArgs e) {
+            this.Close();
+        }
     }
 }

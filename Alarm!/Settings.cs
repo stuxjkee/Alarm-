@@ -12,20 +12,32 @@ using System.Text.RegularExpressions;
 
 
 namespace Alarm_ {
+
+
     public partial class Settings : Form {
         public Settings() {
             InitializeComponent();
         }
-        WebCam webcam;
         private void Settings_Load(object sender, EventArgs e) {
             editEmail_Leave(editEmail, null);
             editMobileNumber_Leave(editMobileNumber, null);
             dialogFolderSelect.SelectedPath = editFolderSelect.Text = Values.folderPath;
-            if (Values.forCompare == null) {
-                btnChange_Click(btnChange, null);
+
+            if (Values.soundFileName == "Default") {
+                editSoundFilename.Text = "Default";
             } else {
-                imgForCompare.Image = Values.forCompare;
+                editSoundFilename.Text = Path.GetFileName(Values.soundFileName);
             }
+            Values.intertedConnection = Helper.CheckForInternetConnection();
+
+            if (Values.intertedConnection) {
+                labelInternetConnection.Text = "Connected to internet";
+                labelInternetConnection.ForeColor = Color.Green;
+            } else {
+                labelInternetConnection.Text = "Not connected to internet";
+                labelInternetConnection.ForeColor = Color.Red;
+            }
+
             if (Values.emailNotify) {
                 checkEmail.Checked = true;
                 editEmail.Text = Values.email;
@@ -41,8 +53,10 @@ namespace Alarm_ {
             } else {
                 btnChoiceSound.Enabled = false;
             }
-            editPercantage.Value = Values.percentage;
-            editDelay.Value = Values.delay;
+            
+            editDiff.Value = (int)(Values.diff*100);
+            labelDiff.Text = Values.diff.ToString();
+
         }
 
         private void editEmail_Leave(object sender, EventArgs e) {
@@ -59,7 +73,6 @@ namespace Alarm_ {
             }
         }
 
-
         private void editMobileNumber_Leave(object sender, EventArgs e) {
             if (editMobileNumber.Text.Length == 0) {
                 editMobileNumber.Text = "Enter your mobile number";
@@ -74,10 +87,20 @@ namespace Alarm_ {
             }
         }
         private void checkEmail_CheckedChanged(object sender, EventArgs e) {
+            if (checkEmail.Checked && !Values.intertedConnection) {
+                MessageBox.Show("Requires internet connection");
+                checkEmail.Checked = false;
+                return;
+            }
             Values.emailNotify = editEmail.Enabled = checkEmail.Checked;
         }
 
         private void checkSMS_CheckedChanged(object sender, EventArgs e) {
+            if (checkSMS.Checked && !Values.intertedConnection) {
+                MessageBox.Show("Requires internet connection");
+                checkSMS.Checked = false;
+                return;
+            }
             Values.smsNotify = editMobileNumber.Enabled = checkSMS.Checked;
             btnSMSSettings.Enabled = checkSMS.Checked;
             if (checkSMS.Checked && Values.smscLogin == "") {
@@ -88,17 +111,17 @@ namespace Alarm_ {
         }
 
         private void editPercantage_ValueChanged(object sender, EventArgs e) {
-            Values.percentage = (int)editPercantage.Value;
-            Values.logger.Add("Percentage changed" + Values.percentage.ToString() + "%");
+            Values.diff = (int)editDiff.Value;
+            Values.logger.Add("Percentage changed" + Values.diff.ToString() + "%");
         }
 
         private void btnDevice_Click(object sender, EventArgs e) {
-            Values.webcam.advanceSettings();
+           // Values.webcam.advanceSettings();
             Values.logger.Add("Device settings changed");
         }
 
         private void btnResolution_Click(object sender, EventArgs e) {
-            Values.webcam.resolutionSettings();
+            //Values.webcam.resolutionSettings();
             Values.logger.Add("Resolution settings changed");
         }
 
@@ -108,52 +131,8 @@ namespace Alarm_ {
             Values.logger.Add("Imagaes path changed: " + editFolderSelect.Text);
         }
 
-        private void btnCapture_Click(object sender, EventArgs e) {
-            Values.forCompare = imgForCompare.Image;
-            Helper.saveImg(imgForCompare.Image, Values.folderPath + "/toCompare.jpg");
-            webcam.Stop();
-            btnChange.Visible = true;
-            btnCapture.Visible = false;
-            btnFromFile.Visible = false;
-            Values.forCompare = imgForCompare.Image;
-            Values.logger.Add("Image for compare changed (captured)");
-        }
-
-        private void btnChange_Click(object sender, EventArgs e) {
-            btnChange.Visible = false;
-            btnFromFile.Visible = true;
-            btnCapture.Visible = true;
-            webcam = new WebCam();
-            webcam.InitializeWebCam(ref imgForCompare);
-            webcam.Start();
-        }
-
-        private void btnFromFile_Click(object sender, EventArgs e) {
-            dialogFromFile.InitialDirectory = Values.folderPath;
-            dialogFromFile.Filter = "Image Files (*.bmp, *.jpg, *.png)|*.bmp;*.jpg;*.png";
-            if (dialogFromFile.ShowDialog() == System.Windows.Forms.DialogResult.OK) {
-                webcam.Stop();
-                btnChange.Visible = true;
-                btnCapture.Visible = false;
-                btnFromFile.Visible = false;
-                using (FileStream fs = new FileStream(dialogFromFile.FileName, FileMode.Open, FileAccess.Read)) {
-                    using (Image img = Image.FromStream(fs)) {
-                        imgForCompare.Image = Values.forCompare = (Image)img.Clone();
-                    }
-                }
-                Values.logger.Add("Image for compare changed (loaded)" + dialogFromFile.FileName);
-            }
-            dialogFromFile.Dispose();
-            
-        }
-
-        private void Settings_FormClosed(object sender, FormClosedEventArgs e) {
-            
-        }
-
-        private void editDelay_ValueChanged(object sender, EventArgs e) {
-            Values.delay = (int)editDelay.Value;
-        }
+       
+        
 
         private void btnSMSSettings_Click(object sender, EventArgs e) {
             SmsSettings wnd = new SmsSettings();
@@ -167,6 +146,17 @@ namespace Alarm_ {
         private void Settings_FormClosing(object sender, FormClosingEventArgs e) {
             Values.smsNotify = false;
             Values.emailNotify = false;
+
+            if (checkSoundNotify.Checked) {
+                if (!File.Exists(Values.soundFileName) && Values.soundFileName != "Default") {
+                    checkSoundNotify.Checked = false;
+                    Values.soundNotify = false;
+                    editSoundFilename.Text = "";
+                    MessageBox.Show("Wrong sound file");
+                    e.Cancel = true;
+                }
+            }
+
             if (checkEmail.Checked) {
                 string exprEmail = "[.\\-_a-z0-9]+@([a-z0-9][\\-a-z0-9]+\\.)+[a-z]{2,6}";
                 Match isMatch = Regex.Match(editEmail.Text, exprEmail, RegexOptions.IgnoreCase);
@@ -212,7 +202,7 @@ namespace Alarm_ {
         }
 
         private void btnChoiceSound_Click(object sender, EventArgs e) {
-            dialogSoundSelect.Filter = "Music Files (*.mp3)|*.mp3";
+            dialogSoundSelect.Filter = "Sound Files (*.wav)|*.wav";
             if (dialogSoundSelect.ShowDialog() == System.Windows.Forms.DialogResult.OK) {
                 Values.soundFileName = dialogSoundSelect.FileName;
                 Values.soundNotify = true;
@@ -225,12 +215,19 @@ namespace Alarm_ {
         }
 
         private void checkSoundNotify_CheckedChanged(object sender, EventArgs e) {
-            if (checkSoundNotify.Checked && !Values.soundNotify) {
-                btnChoiceSound_Click(null, null);
+            if (checkSoundNotify.Checked) {
+                btnChoiceSound.Enabled = true;
+                editSoundFilename.Text = Values.soundFileName;
+                Values.soundNotify = true;
             } else {
-                Values.soundNotify = false;
                 btnChoiceSound.Enabled = false;
+                Values.soundNotify = false;
             }
+        }
+
+        private void editDiff_Scroll(object sender, EventArgs e) {
+            Values.diff = (double)(editDiff.Value / 100.0);
+            labelDiff.Text = Values.diff.ToString();
         }
               
     }
