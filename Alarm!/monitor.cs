@@ -80,6 +80,10 @@ namespace Alarm_ {
         }
 
         private static void SendSMS() {
+            if (!Helper.CheckForInternetConnection()) {
+                Values.logger.Add("Lost inet connection");
+                return;
+            } 
             SMSC smsc = new SMSC();
             smsc.send_sms(Values.mobile,
             "Possible danger at " + DateTime.Now.ToString("dd MMM HH:mm:ss") + "Please check your email",
@@ -88,6 +92,10 @@ namespace Alarm_ {
         }
 
         private static void SendEmail() {
+            if (!Helper.CheckForInternetConnection()) {
+                Values.logger.Add("Lost inet connection");
+                return;
+            }
             Image img = Values.curFrame;
             String filename = Values.folderPath + "\\" + DateTime.Now.ToString("HH.mm.ss") + ".jpg";
             Helper.saveImg(img, filename);
@@ -118,23 +126,18 @@ namespace Alarm_ {
 
             Helper.saveImg(img, imageFilename);
             if (Values.smsNotify) {
-                if (!Helper.CheckForInternetConnection()) {
-                    Values.logger.Add("SMS Sending error: Lost internet connection");
-                    return;
-                }
+                
                 Thread smsThread = new Thread(SendSMS);
                 smsThread.IsBackground = true;
                 smsThread.Start();    
             }
 
             if (Values.emailNotify) {
-                if (!Helper.CheckForInternetConnection()) {
-                    Values.logger.Add("SMS Sending error: Lost internet connection");
-                    return;
-                }
-                Thread emailThread = new Thread(SendEmail);
-                emailThread.IsBackground = true;
-                emailThread.Start();
+                
+                    Thread emailThread = new Thread(SendEmail);
+                    emailThread.IsBackground = true;
+                    emailThread.Start();
+                
             }
 
             Thread showDangerFormThread = new Thread(showDangerForm);
