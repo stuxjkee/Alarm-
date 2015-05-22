@@ -8,6 +8,7 @@ using System.IO;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Net;
+using System.Threading;
 
 namespace Alarm_ {
     class Helper {
@@ -20,9 +21,12 @@ namespace Alarm_ {
                 Directory.CreateDirectory(Values.folderPath);
             }
 
+            Thread.Sleep(500);
+
             using (FileStream fs = new FileStream(fileName, FileMode.Create)) {
                 img.Save(fs, System.Drawing.Imaging.ImageFormat.Jpeg);
             }
+
         }
 
         public static bool CheckForInternetConnection() {
