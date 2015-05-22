@@ -50,18 +50,18 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(9, 134);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(96, 13);
+            this.label1.Size = new System.Drawing.Size(117, 13);
             this.label1.TabIndex = 14;
-            this.label1.Text = "Detector sensitivity";
+            this.label1.Text = "Чутливість детектора";
             // 
             // checkEmail
             // 
             this.checkEmail.AutoSize = true;
             this.checkEmail.Location = new System.Drawing.Point(12, 102);
             this.checkEmail.Name = "checkEmail";
-            this.checkEmail.Size = new System.Drawing.Size(79, 17);
+            this.checkEmail.Size = new System.Drawing.Size(113, 17);
             this.checkEmail.TabIndex = 8;
-            this.checkEmail.Text = "Email notify";
+            this.checkEmail.Text = "Email сповіщення";
             this.checkEmail.UseVisualStyleBackColor = true;
             this.checkEmail.CheckedChanged += new System.EventHandler(this.checkEmail_CheckedChanged);
             // 
@@ -70,16 +70,16 @@
             this.checkSMS.AutoSize = true;
             this.checkSMS.Location = new System.Drawing.Point(12, 79);
             this.checkSMS.Name = "checkSMS";
-            this.checkSMS.Size = new System.Drawing.Size(77, 17);
+            this.checkSMS.Size = new System.Drawing.Size(111, 17);
             this.checkSMS.TabIndex = 2;
-            this.checkSMS.Text = "SMS notify";
+            this.checkSMS.Text = "SMS сповіщення";
             this.checkSMS.UseVisualStyleBackColor = true;
             this.checkSMS.CheckedChanged += new System.EventHandler(this.checkSMS_CheckedChanged);
             // 
             // editEmail
             // 
             this.editEmail.Enabled = false;
-            this.editEmail.Location = new System.Drawing.Point(99, 99);
+            this.editEmail.Location = new System.Drawing.Point(140, 99);
             this.editEmail.Name = "editEmail";
             this.editEmail.Size = new System.Drawing.Size(133, 20);
             this.editEmail.TabIndex = 9;
@@ -89,7 +89,7 @@
             // editMobileNumber
             // 
             this.editMobileNumber.Enabled = false;
-            this.editMobileNumber.Location = new System.Drawing.Point(99, 77);
+            this.editMobileNumber.Location = new System.Drawing.Point(140, 77);
             this.editMobileNumber.Name = "editMobileNumber";
             this.editMobileNumber.Size = new System.Drawing.Size(133, 20);
             this.editMobileNumber.TabIndex = 3;
@@ -99,38 +99,38 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(9, 22);
+            this.label2.Location = new System.Drawing.Point(14, 22);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(84, 13);
+            this.label2.Size = new System.Drawing.Size(119, 13);
             this.label2.TabIndex = 19;
-            this.label2.Text = "Images directory";
+            this.label2.Text = "Папка для зображень";
             // 
             // editFolderSelect
             // 
             this.editFolderSelect.Enabled = false;
-            this.editFolderSelect.Location = new System.Drawing.Point(98, 19);
+            this.editFolderSelect.Location = new System.Drawing.Point(139, 19);
             this.editFolderSelect.Name = "editFolderSelect";
             this.editFolderSelect.Size = new System.Drawing.Size(135, 20);
             this.editFolderSelect.TabIndex = 0;
             // 
             // btnSelectFolder
             // 
-            this.btnSelectFolder.Location = new System.Drawing.Point(239, 17);
+            this.btnSelectFolder.Location = new System.Drawing.Point(280, 17);
             this.btnSelectFolder.Name = "btnSelectFolder";
             this.btnSelectFolder.Size = new System.Drawing.Size(60, 22);
             this.btnSelectFolder.TabIndex = 1;
-            this.btnSelectFolder.Text = "Change";
+            this.btnSelectFolder.Text = "Змінити";
             this.btnSelectFolder.UseVisualStyleBackColor = true;
             this.btnSelectFolder.Click += new System.EventHandler(this.btnSelectFolder_Click);
             // 
             // btnSMSSettings
             // 
             this.btnSMSSettings.Enabled = false;
-            this.btnSMSSettings.Location = new System.Drawing.Point(238, 76);
+            this.btnSMSSettings.Location = new System.Drawing.Point(279, 76);
             this.btnSMSSettings.Name = "btnSMSSettings";
             this.btnSMSSettings.Size = new System.Drawing.Size(60, 23);
             this.btnSMSSettings.TabIndex = 4;
-            this.btnSMSSettings.Text = "Settings";
+            this.btnSMSSettings.Text = "Змінити";
             this.btnSMSSettings.UseVisualStyleBackColor = true;
             this.btnSMSSettings.Click += new System.EventHandler(this.btnSMSSettings_Click);
             // 
@@ -147,30 +147,30 @@
             // checkSoundNotify
             // 
             this.checkSoundNotify.AutoSize = true;
-            this.checkSoundNotify.Location = new System.Drawing.Point(12, 53);
+            this.checkSoundNotify.Location = new System.Drawing.Point(12, 52);
             this.checkSoundNotify.Name = "checkSoundNotify";
-            this.checkSoundNotify.Size = new System.Drawing.Size(85, 17);
+            this.checkSoundNotify.Size = new System.Drawing.Size(130, 17);
             this.checkSoundNotify.TabIndex = 5;
-            this.checkSoundNotify.Text = "Sound notify";
+            this.checkSoundNotify.Text = "Звукове сповіщення";
             this.checkSoundNotify.UseVisualStyleBackColor = true;
             this.checkSoundNotify.CheckedChanged += new System.EventHandler(this.checkSoundNotify_CheckedChanged);
             // 
             // editSoundFilename
             // 
             this.editSoundFilename.Enabled = false;
-            this.editSoundFilename.Location = new System.Drawing.Point(99, 48);
+            this.editSoundFilename.Location = new System.Drawing.Point(140, 48);
             this.editSoundFilename.Name = "editSoundFilename";
             this.editSoundFilename.Size = new System.Drawing.Size(133, 20);
             this.editSoundFilename.TabIndex = 6;
-            this.editSoundFilename.Text = "Choice a sound";
+            this.editSoundFilename.Text = "Виберіть звук";
             // 
             // btnChoiceSound
             // 
-            this.btnChoiceSound.Location = new System.Drawing.Point(238, 48);
+            this.btnChoiceSound.Location = new System.Drawing.Point(279, 48);
             this.btnChoiceSound.Name = "btnChoiceSound";
             this.btnChoiceSound.Size = new System.Drawing.Size(60, 22);
             this.btnChoiceSound.TabIndex = 7;
-            this.btnChoiceSound.Text = "Choice";
+            this.btnChoiceSound.Text = "Вибрати";
             this.btnChoiceSound.UseVisualStyleBackColor = true;
             this.btnChoiceSound.Click += new System.EventHandler(this.btnChoiceSound_Click);
             // 
@@ -207,7 +207,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(321, 203);
+            this.ClientSize = new System.Drawing.Size(360, 203);
             this.ControlBox = false;
             this.Controls.Add(this.labelInternetConnection);
             this.Controls.Add(this.labelDiff);
@@ -228,7 +228,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "Settings";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Settings";
+            this.Text = "Налаштування";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Settings_FormClosing);
             this.Load += new System.EventHandler(this.Settings_Load);
             ((System.ComponentModel.ISupportInitialize)(this.editDiff)).EndInit();

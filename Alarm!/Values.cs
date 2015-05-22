@@ -26,5 +26,6 @@ namespace Alarm_ {
         public static int framesCnt = 3;
         public static string smscLogin = "";
         public static string smscPassword = "";
+        public static string REMOTE_BOX_STRING = "Use remote/ip camera";
     }
 }

@@ -23,7 +23,7 @@ namespace Alarm_ {
 
         private static void monitor() {
             while (monitorThread.IsAlive) {
-                
+                Thread.Sleep(500);
                 curFrame = Values.curFrame;
                 if (motionDetector.ProcessFrame(curFrame) > Values.diff) {
                     //MessageBox.Show("ALARM");

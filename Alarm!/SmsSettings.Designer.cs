@@ -50,18 +50,18 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(12, 27);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(69, 13);
+            this.label1.Size = new System.Drawing.Size(66, 13);
             this.label1.TabIndex = 1;
-            this.label1.Text = "SMS Service";
+            this.label1.Text = "SMS Сервіс";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(12, 53);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(55, 13);
+            this.label2.Size = new System.Drawing.Size(34, 13);
             this.label2.TabIndex = 2;
-            this.label2.Text = "Username";
+            this.label2.Text = "Логін";
             // 
             // editUsername
             // 
@@ -75,9 +75,9 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(12, 76);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(53, 13);
+            this.label3.Size = new System.Drawing.Size(45, 13);
             this.label3.TabIndex = 4;
-            this.label3.Text = "Password";
+            this.label3.Text = "Пароль";
             // 
             // editPassword
             // 
@@ -93,7 +93,7 @@
             this.btnAccept.Name = "btnAccept";
             this.btnAccept.Size = new System.Drawing.Size(74, 33);
             this.btnAccept.TabIndex = 6;
-            this.btnAccept.Text = "Accept";
+            this.btnAccept.Text = "Відправити";
             this.btnAccept.UseVisualStyleBackColor = true;
             this.btnAccept.Click += new System.EventHandler(this.btnAccept_Click);
             // 
@@ -103,7 +103,7 @@
             this.bntClose.Name = "bntClose";
             this.bntClose.Size = new System.Drawing.Size(74, 33);
             this.bntClose.TabIndex = 7;
-            this.bntClose.Text = "Close";
+            this.bntClose.Text = "Закрити";
             this.bntClose.UseVisualStyleBackColor = true;
             this.bntClose.Click += new System.EventHandler(this.bntClose_Click);
             // 

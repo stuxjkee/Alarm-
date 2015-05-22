@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Threading;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using System.IO;
 
 using AForge.Video;
 using AForge.Video.DirectShow;
@@ -21,7 +22,7 @@ namespace Alarm_ {
         }
 
         FilterInfoCollection videoDevices;
-        public VideoCaptureDevice videoSource;
+        public IVideoSource videoSource;
 
         bool monitorStarted = false;
 
@@ -45,6 +46,8 @@ namespace Alarm_ {
         }
 
         private void mainForm_Load(object sender, EventArgs e) {
+            Values.folderPath = Values.folderPath + "\\" + DateTime.Now.ToString("dd.MM.yyyy");
+            Directory.CreateDirectory(Values.folderPath);
             Values.mainFormPtr = this;
             Values.logger = new Logger();
 
@@ -54,7 +57,7 @@ namespace Alarm_ {
             
 
             videoDevices = new FilterInfoCollection(FilterCategory.VideoInputDevice);
-
+            
             try {
                 if (videoDevices.Count == 0) {
                     throw new ApplicationException();
@@ -63,29 +66,51 @@ namespace Alarm_ {
                     boxDevices.Items.Add(device.Name);
                 }
                 boxDevices.SelectedIndex = 0;
-                videoSource = new VideoCaptureDevice();
+                //videoSource = new VideoCaptureDevice();
+                videoSource = new VideoCaptureDevice(videoDevices[boxDevices.SelectedIndex].MonikerString);
                 CameraStart();
+                boxDevices.Items.Add(Values.REMOTE_BOX_STRING);
             } catch (ApplicationException ex) {
-                MessageBox.Show("Video sources are not found");
-                this.Close();
+                 DialogResult res = MessageBox.Show("Local video sources are not found. Would you like to add remote camera?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                 if (res == DialogResult.Yes) {
+                     RemoteCameraSelect();
+                 }
             }
 
-           
 
         }
 
-        
+        public void RemoteCameraSelect() {
+
+
+            RemoteCameraForm wnd = new RemoteCameraForm();
+            wnd.ShowDialog();
+            if (wnd.OK) {
+                if (wnd.type == 0) {
+                    videoSource = new JPEGStream(wnd.url);
+                } else {
+                    videoSource = new MJPEGStream(wnd.url);
+                }
+                CameraStart();
+            } else {
+                videoSource = new VideoCaptureDevice(videoDevices[0].MonikerString);
+                boxDevices.SelectedIndex = 0;
+                CameraStart(); 
+            }
+
+        }
 
         private void CameraStop() {
             if (videoSource != null) {
                 videoSource.Stop();
+                
                 imgVideo.Image = null;
                 imgVideo.Invalidate();
             }
         }
 
         private void CameraStart() {
-            videoSource = new VideoCaptureDevice(videoDevices[boxDevices.SelectedIndex].MonikerString);
+            //videoSource = new VideoCaptureDevice(videoDevices[boxDevices.SelectedIndex].MonikerString);
             videoSource.NewFrame += videoSource_NewFrame;
             videoSource.Start();
         }
@@ -157,15 +182,20 @@ namespace Alarm_ {
         private void boxDevices_SelectedIndexChanged(object sender, EventArgs e) {
             if (videoSource != null && videoSource.IsRunning) {
                 CameraStop();
-                videoSource = new VideoCaptureDevice(videoDevices[boxDevices.SelectedIndex].MonikerString);
-                CameraStart();
+                if (boxDevices.Text == Values.REMOTE_BOX_STRING) {
+                    RemoteCameraSelect();
+                } else {
+                    videoSource = new VideoCaptureDevice(videoDevices[boxDevices.SelectedIndex].MonikerString);
+                    CameraStart();
+                }
+
             }
+            
         }
 
         private void mainForm_FormClosing(object sender, FormClosingEventArgs e) {
-            if (videoSource.IsRunning) {
-                videoSource.Stop();
-            }
+            CameraStop();
+            notifyIcon1.Visible = false;
             Values.logger.Save();
             Monitor.Exit();
         }
@@ -176,8 +206,25 @@ namespace Alarm_ {
 
         private void btnCameraSettings_Click(object sender, EventArgs e) {
             try {
-                videoSource.DisplayPropertyPage(this.Handle);
+                ((VideoCaptureDevice)videoSource).DisplayPropertyPage(this.Handle);
             } catch (Exception ignored) { }
+        }
+
+        private void mainForm_Deactivate(object sender, EventArgs e) {
+            if (this.WindowState == FormWindowState.Minimized) {
+                this.ShowInTaskbar = false;
+                notifyIcon1.Visible = true;
+            }
+        }
+
+        private void notifyIcon1_Click(object sender, EventArgs e) {
+            this.WindowState = FormWindowState.Normal;
+            this.ShowInTaskbar = true;
+            notifyIcon1.Visible = false;
+        }
+
+        private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e) {
+
         }        
     }
 }

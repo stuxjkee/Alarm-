@@ -23,13 +23,15 @@
         /// содержимое данного метода при помощи редактора кода.
         /// </summary>
         private void InitializeComponent() {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(mainForm));
             this.labelMonitoring = new System.Windows.Forms.Label();
             this.boxDevices = new System.Windows.Forms.ComboBox();
+            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.btnCameraSettings = new System.Windows.Forms.Button();
             this.btnSettings = new System.Windows.Forms.Button();
             this.btnStart = new System.Windows.Forms.Button();
             this.imgVideo = new System.Windows.Forms.PictureBox();
-            this.btnCameraSettings = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.imgVideo)).BeginInit();
             this.SuspendLayout();
             // 
@@ -60,6 +62,28 @@
             this.boxDevices.Size = new System.Drawing.Size(383, 21);
             this.boxDevices.TabIndex = 0;
             this.boxDevices.SelectedIndexChanged += new System.EventHandler(this.boxDevices_SelectedIndexChanged);
+            // 
+            // notifyIcon1
+            // 
+            this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
+            this.notifyIcon1.Text = "Alarm!";
+            this.notifyIcon1.Visible = true;
+            this.notifyIcon1.Click += new System.EventHandler(this.notifyIcon1_Click);
+            this.notifyIcon1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon1_MouseDoubleClick);
+            // 
+            // btnCameraSettings
+            // 
+            this.btnCameraSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCameraSettings.BackColor = System.Drawing.Color.Black;
+            this.btnCameraSettings.FlatAppearance.BorderSize = 0;
+            this.btnCameraSettings.Image = global::Alarm_.Properties.Resources.settings;
+            this.btnCameraSettings.Location = new System.Drawing.Point(397, 334);
+            this.btnCameraSettings.Margin = new System.Windows.Forms.Padding(0);
+            this.btnCameraSettings.Name = "btnCameraSettings";
+            this.btnCameraSettings.Size = new System.Drawing.Size(23, 22);
+            this.btnCameraSettings.TabIndex = 11;
+            this.btnCameraSettings.UseVisualStyleBackColor = false;
+            this.btnCameraSettings.Click += new System.EventHandler(this.btnCameraSettings_Click);
             // 
             // btnSettings
             // 
@@ -94,6 +118,8 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.imgVideo.BackColor = System.Drawing.Color.Black;
+            this.imgVideo.ErrorImage = global::Alarm_.Properties.Resources.imageNotFound;
+            this.imgVideo.InitialImage = global::Alarm_.Properties.Resources.imageNotFound;
             this.imgVideo.Location = new System.Drawing.Point(12, 9);
             this.imgVideo.Margin = new System.Windows.Forms.Padding(0);
             this.imgVideo.Name = "imgVideo";
@@ -102,20 +128,6 @@
             this.imgVideo.TabIndex = 0;
             this.imgVideo.TabStop = false;
             this.imgVideo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.mainForm_MouseDown);
-            // 
-            // btnCameraSettings
-            // 
-            this.btnCameraSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCameraSettings.BackColor = System.Drawing.Color.Black;
-            this.btnCameraSettings.FlatAppearance.BorderSize = 0;
-            this.btnCameraSettings.Image = global::Alarm_.Properties.Resources.settings;
-            this.btnCameraSettings.Location = new System.Drawing.Point(397, 334);
-            this.btnCameraSettings.Margin = new System.Windows.Forms.Padding(0);
-            this.btnCameraSettings.Name = "btnCameraSettings";
-            this.btnCameraSettings.Size = new System.Drawing.Size(23, 22);
-            this.btnCameraSettings.TabIndex = 11;
-            this.btnCameraSettings.UseVisualStyleBackColor = false;
-            this.btnCameraSettings.Click += new System.EventHandler(this.btnCameraSettings_Click);
             // 
             // mainForm
             // 
@@ -136,6 +148,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ALARM!";
             this.TransparencyKey = System.Drawing.SystemColors.ActiveCaption;
+            this.Deactivate += new System.EventHandler(this.mainForm_Deactivate);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.mainForm_FormClosing);
             this.Load += new System.EventHandler(this.mainForm_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.mainForm_MouseDown);
@@ -153,6 +166,7 @@
         private System.Windows.Forms.Label labelMonitoring;
         private System.Windows.Forms.ComboBox boxDevices;
         private System.Windows.Forms.Button btnCameraSettings;
+        private System.Windows.Forms.NotifyIcon notifyIcon1;
     }
 }
 

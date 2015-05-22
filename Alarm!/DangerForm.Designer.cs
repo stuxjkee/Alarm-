@@ -48,7 +48,7 @@
             this.btnStop.Name = "btnStop";
             this.btnStop.Size = new System.Drawing.Size(143, 47);
             this.btnStop.TabIndex = 1;
-            this.btnStop.Text = "Stop monitoring";
+            this.btnStop.Text = "Зупинити моніторинг";
             this.btnStop.UseVisualStyleBackColor = false;
             this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
             // 
@@ -60,7 +60,7 @@
             this.btnContinue.Name = "btnContinue";
             this.btnContinue.Size = new System.Drawing.Size(144, 47);
             this.btnContinue.TabIndex = 2;
-            this.btnContinue.Text = "Continue monitoring";
+            this.btnContinue.Text = "Продовжити моніторинг";
             this.btnContinue.UseVisualStyleBackColor = false;
             this.btnContinue.Click += new System.EventHandler(this.btnContinue_Click);
             // 
