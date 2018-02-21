@@ -6,8 +6,8 @@ using System.Collections.Generic;
 
 namespace Alarm_ {
     class Mail {
-        public static string username = "info.monicam@gmail.com";
-        public static string password = "monicampassword";
+        public static string username = "gmail_login";
+        public static string password = "gmail_pass";
         
         public static void email_send(List<string> filenames) {
             MailMessage mail = new MailMessage();
